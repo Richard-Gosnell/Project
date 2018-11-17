@@ -93,7 +93,10 @@
 		$statment = $db -> prepare($query);
 		$statment -> execute();
 	}
-	
+    if (isset($_POST['submit'])) {
+        header('Location: index.php');
+        exit();
+    }
 
 ?>
 
@@ -103,17 +106,17 @@
 	<title>Edit Post</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,700" rel="stylesheet">
-	<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
-	<script>
-  tinymce.init({
-    selector: '#tinymcetextarea'
-  });
-  </script>
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea'});</script>
 </head>
 <body>
 	<div id="wrapper">
 		<div id="header">
 			<H1>Site of Linux</H1>
+            <form method="get" id="search" action="search.php">
+                <input type="text" id="search" name="search">
+                <input type="submit" id="search" name="search" value="Search">
+            </form>
 		</div>
 		<div id="menu">
 			<ul>

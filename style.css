@@ -14,7 +14,7 @@ textarea {
 body {
     text-align: center;
     background: #222;
-    font-family: 'Ubuntu', sans-serif;    
+    font-family: 'Ubuntu', sans-serif;
 }
 
 fieldset {
@@ -34,7 +34,7 @@ fieldset p {
     padding: 20px;
     background: #EEEEEE;
 }
- div#header h1 a {
+div#header h1 a {
     text-decoration: none;
     color: black;
 }
@@ -44,6 +44,13 @@ div#header h1 {
     font-size: 2.5em;
     font-weight: bold;
     font-family: 'Ubuntu', sans-serif;
+}
+
+div#header input{
+    display: inline;
+    position: relative;
+    left: 70%;
+    bottom: 80px;
 }
 
 div#sort{
@@ -92,7 +99,7 @@ div#menu li a {
 }
 
 div#menu {
-    padding-left: 0;    
+    padding-left: 0;
     list-style: none;
     margin-bottom: 0px;
 }

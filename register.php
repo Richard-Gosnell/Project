@@ -94,6 +94,10 @@
 	<div id="wrapper">
 		<div id="header">
 			<H1>Site of Linux</H1>
+            <form method="get" id="search" action="search.php">
+                <input type="text" id="search" name="search">
+                <input type="submit" id="search" name="search" value="Search">
+            </form>
 		</div>
 		<div id="menu">
 			<ul>
