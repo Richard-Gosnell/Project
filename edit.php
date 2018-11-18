@@ -114,7 +114,7 @@
 		<div id="header">
 			<H1>Site of Linux</H1>
             <form method="get" id="search" action="search.php">
-                <input type="text" id="search" name="search">
+                <input type="text" id="search" name="search" minlength="1">
                 <input type="submit" id="searchquery" name="searchquery" value="Search">
             </form>
 		</div>

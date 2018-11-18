@@ -1,13 +1,17 @@
 <?php
-
     require "connect.php";
 
-    $query = "SELECT * FROM linuxdistrubtionpost";
+    function filtersearch(){
+        return filter_input(INPUT_GET,'search',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    }
+
+    $searchterm = $_GET['search'];
+    $searchterm = filtersearch();
+    $query = "SELECT * FROM linuxdistrubtionpost WHERE linuxdistrubtionname LIKE '%$searchterm%' OR details LIKE '%$searchterm%'" ;
 
     $statement = $db -> prepare($query);
     $statement -> execute();
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -20,9 +24,9 @@
 <div id="wrapper">
     <div id="header">
         <H1>Site of Linux</H1>
-        <form method="get" id="search" action="search.php">
-            <input type="text" id="search" name="search">
-            <input type="submit" id="search" name="search" value="Search">
+        <form method="get" id="searchbar" action="search.php">
+            <input type="text" id="search" name="search" minlength="1">
+            <input type="submit" id="searchquery" name="search" value="Search">
         </form>
     </div>
     <div id="menu">
@@ -37,7 +41,9 @@
         <h2>Search</h2>
         <?php while ($row = $statement -> fetch()): ?>
             <div class="post">
-
+                <ul>
+                    <li><a href="fullpost.php?id=<?=$row['id']?>"><?=$row['linuxdistrubtionname'];?></a></li>
+                </ul>
             </div>
         <?php endwhile; ?>
     </div>
