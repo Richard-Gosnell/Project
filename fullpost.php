@@ -25,7 +25,7 @@
 			<h1><a href="index.php">Site of Linux</a></h1>
             <form method="get" id="search" action="search.php">
                 <input type="text" id="search" name="search">
-                <input type="submit" id="search" name="search" value="Search">
+                <input type="submit" id="searchquery" name="searchquery" value="Search">
             </form>
 		</div>
 		<div id="menu">
