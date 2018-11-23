@@ -1,7 +1,11 @@
 <?php
-	//require session(loggedin)
-	require 'authenticate.php';
 	require 'connect.php';
+
+    session_start();
+    if (!isset($_SESSION['username']) || empty($_SESSION['username'])){
+        header('Location: login.php?redirect=true');
+    exit();
+    }
 
 	function filterlinuxdistrubtionname(){
 		return filter_input(INPUT_POST,'linuxdistrubtionname',FILTER_SANITIZE_FULL_SPECIAL_CHARS);

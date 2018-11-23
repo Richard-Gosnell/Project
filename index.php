@@ -1,10 +1,12 @@
 <?php
-	require 'authenticate.php';
-	//Add code to send to login if not.
     session_start();
+    if (!isset($_SESSION['username']) || empty($_SESSION['username'])){
+        header('Location: login.php?redirect=true');
+        exit();
+    }
 
-	require "connect.php"; 
-
+	require "connect.php";
+    $username = $_SESSION['username'];
 	$option = "linuxdistrubtionname";
 	$sortoption = "Name";
 	if (isset($_POST['title'])) {
@@ -34,6 +36,9 @@
             <form method="get" id="searchbar" action="search.php">
                 <input type="text" id="search" name="search" minlength="1">
                 <input type="submit" id="searchquery" name="searchquery" value="Search">
+            </form>
+            <form method="get" id="logoutbutton" action="login.php">
+                <input type="submit" id="logout" name="logout" value="Logout">
             </form>
 		</div>
 		<div id="menu">

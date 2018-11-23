@@ -20,6 +20,16 @@
 		}
 	}
 
+	$notice = "";
+	if (isset($_GET['redirect'])){
+	    $notice = "You must be logged in to view that page";
+    }
+
+    if (isset($_GET['logout'])){
+        session_start();
+        $_SESSION['username'] = [];
+        $notice = "You have been logged out";
+    }
 	$username = isset($_POST['username']);
 	$password = isset($_POST['password']);
 	$username = trim($username);
@@ -49,7 +59,7 @@
 
             if (password_verify($password, $passwordhash)) {
                 session_start();
-                $_SESSION['loggedin'];
+                //$_SESSION['loggedin'];
                 $_SESSION['username'] = $username;
                 $loginresult = "<p style='color:green;'>Logged in as $username</p>";
             } else {
@@ -86,6 +96,9 @@
 		</div>
 		<div id="all_posts">
 			<form id="login" action="login.php" method="post">
+                <div id="notice">
+                <p><?=$notice?></p>
+                </div>
 				<fieldset>
 					<legend>Login</legend>
 					<h5>All fields must be entered.</h5>

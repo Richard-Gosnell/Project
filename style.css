@@ -53,6 +53,11 @@ div#header input{
     bottom: 80px;
 }
 
+div#notice p{
+    top: 5px;
+    color: red;
+}
+
 div#sort{
     position: relative;
     padding: 4px;
