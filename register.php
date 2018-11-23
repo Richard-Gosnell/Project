@@ -32,6 +32,7 @@
 	$firstname = "";
 	$lastname = "";
 	$errors = array();
+	$message = "";
 
 	if (isset($_POST['submit'])) {
 		$username = filterusername($username);
@@ -64,10 +65,8 @@
   		if ($password != $confirmpassword) {
 		array_push($errors, "The two passwords do not match");
   		}
-
     if (count($errors) == 0) {
-        $salt = openssl_random_pseudo_bytes(20);
-        $saltedpassword = $salt . $password;
+        $saltedpassword = $password;
         $encyptedpassword = password_hash($saltedpassword,1);
 
         $query = "INSERT INTO userprofile (username, emailaddress, password, firstname, lastname) VALUES(:username, :emailaddress, :password, :firstname, :lastname)";
@@ -79,12 +78,13 @@
         $statment->bindValue(':lastname', $lastname);
 
         $statment->execute();
+        $message = "Registration Successful";
     }
   	}
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Register</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -94,7 +94,7 @@
 	<div id="wrapper">
 		<div id="header">
 			<H1>Site of Linux</H1>
-            <form method="get" id="search" action="search.php">
+            <form method="get" id="searchbar" action="search.php">
                 <input type="text" id="search" name="search" minlength="1">
                 <input type="submit" id="searchquery" name="searchquery" value="Search">
             </form>
@@ -110,6 +110,7 @@
 		<div id="all_posts">
 			<form id="register" action="register.php" method="post">
 				<fieldset>
+                    <p><strong><?= $message ?></strong></p>
 					<legend>Register</legend>
 					<h5>All fields must be entered.</h5>
 					<label>Username:</label>

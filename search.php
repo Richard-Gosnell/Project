@@ -14,7 +14,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Search</title>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -42,7 +42,8 @@
         <?php while ($row = $statement -> fetch()): ?>
             <div class="post">
                 <ul>
-                    <li><a href="fullpost.php?id=<?=$row['id']?>"><?=$row['linuxdistrubtionname'];?></a></li>
+                    <li><a href="fullpost.php?id=<?=$row['id']?>"><?=$row['linuxdistrubtionname'];?></a><br>
+                    <small><a href="edit.php?id=<?=$row['id']?>">Edit</a></small></li>
                 </ul>
             </div>
         <?php endwhile; ?>

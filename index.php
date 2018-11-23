@@ -1,6 +1,8 @@
 <?php
 	require 'authenticate.php';
 	//Add code to send to login if not.
+    session_start();
+
 	require "connect.php"; 
 
 	$option = "linuxdistrubtionname";
@@ -19,7 +21,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -59,7 +61,7 @@
 
 				<p>Link to site: <a href="<?=$row['websiteurl'];?>"><?=$row['websiteurl'];?></a></p>
 				<p>Details: <?=html_entity_decode($row['details']);?>
-				<a href="fullpost.php?id=<?=$row['id']?>"><br>Read More...</a></p>
+				<a href="fullpost.php?id=<?=$row['id']?>"><br>Read More...</a><br>
 				<small><a href="edit.php?id=<?=$row['id']?>">Edit</a></small>
 			</div>
 			<?php endwhile; ?>

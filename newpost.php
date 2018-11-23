@@ -35,8 +35,8 @@
 	    $permitedmimetypes = ['image/gif','image/jpeg','image/png','image/svg+xml','image/bmp','image/x-icon','image/tiff','image/webp'];
 	    $permitedfileextensions = ['gif','jpg','jpeg','png','svg','bmp','ico','tiff','webp'];
 
-	    $actualfileextension = pathinfo($new_path, PATHINFO_EXTENSION);
-	    $actualmimetype = getimagesize($temporary_path)['mime'];
+	    $actualfileextension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+	    $actualmimetype = getimagesize($_FILES['image']['tempname'])['mime'];
 
 	    $fileextensionvalid = in_array($actualfileextension,$permitedfileextensions);
 	    $mimetypevalid = in_array($actualmimetype,$permitedmimetypes);
@@ -67,7 +67,7 @@
 	$details = filterdetails($details);
     //Server.HtmlEncode;
 
-$websiteurl = isset($_POST['websiteurl']);
+    $websiteurl = isset($_POST['websiteurl']);
 	$websiteurl = trim($websiteurl);
 	$websiteurl = filterwebsiteurl($websiteurl);
 	//$websiteurl = FILTER_VALIDATE_URL($websiteurl);
@@ -118,7 +118,7 @@ $websiteurl = isset($_POST['websiteurl']);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>New Post</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -130,7 +130,7 @@ $websiteurl = isset($_POST['websiteurl']);
 	<div id="wrapper">
 		<div id="header">
 			<H1>Site of Linux</H1>
-            <form method="get" id="search" action="search.php">
+            <form method="get" id="searchbar" action="search.php">
                 <input type="text" id="search" name="search" minlength="1">
                 <input type="submit" id="searchquery" name="searchquery" value="Search">
             </form>
@@ -153,7 +153,6 @@ $websiteurl = isset($_POST['websiteurl']);
 					<label>CPU Architecture Type: </label>
 					<input id="cpuarchitecture" type="text" name="cpuarchitecture" maxlength="40">
 					<label>Details: </label>
-					<!--<textarea id="tinymcetextarea" name="tinymcetextarea"></textarea>-->
 					<textarea id="details" name="details" maxlength="2000"></textarea>
 					<label>Primary Website Address: </label>
 					<input id="websiteurl" type="url" name="websiteurl" maxlength="40">

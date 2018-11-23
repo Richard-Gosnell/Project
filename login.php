@@ -1,6 +1,5 @@
 <?php 
 	require 'connect.php';
-	session_start();
 
 	function filterusername(){
 		return filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
@@ -27,36 +26,42 @@
 	$password = trim($password);
 	$username = filterusername();
 	$password = filterpassword();
+    $errors = array();
 	$errorMessage ="";
 	$loginresult = "";
+	if (isset($_POST['submit'])) {
+        if (empty($username)) {
+            array_push($errors, "Username is required");
+        }
+
+        if (empty($password)) {
+            array_push($errors, "Password is required");
+        }
 
 
-	
-	$query = "SELECT * FROM userprofile WHERE username = $username";
-	$statement = $db -> prepare($query);
-	$statement -> execute();
+        if (count($errors) == 0) {
+            $query = "SELECT * FROM userprofile WHERE username = '$username'";
+            $statement = $db->prepare($query);
+            $statement->execute();
 
-	$row = $statement -> fetch();
+            $row = $statement->fetch();
+            $passwordhash = $row['password'];
 
-	$encyptedpassword = $row['password'];
-	echo $encyptedpassword;
-	if (password_verify($password, $encyptedpassword)) {
-	    $loginresult = "Logged in";
-    } else {
-	    $loginresult = "Login Failed: Incorrect username or password";
+            if (password_verify($password, $passwordhash)) {
+                session_start();
+                $_SESSION['loggedin'];
+                $_SESSION['username'] = $username;
+                $loginresult = "<p style='color:green;'>Logged in as $username</p>";
+            } else {
+                $loginresult = "<p style='color:red;'>Login Failed: Incorrect username or password<p>";
+            }
+        }
     }
-
-	/*if (empty($row)) {
-		$loginresult = "Login does not match any users";
-	} else {
-		$loginresult = "Login Successful";
-		$_SESSION['login'] = $username;
-	}*/
 
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
@@ -66,7 +71,7 @@
 	<div id="wrapper">
 		<div id="header">
 			<H1>Site of Linux</H1>
-            <form method="get" id="search" action="search.php">
+            <form method="get" id="searchbar" action="search.php">
                 <input type="text" id="search" name="search" minlength="1">
                 <input type="submit" id="searchquery" name="searchquery" value="Search">
             </form>
@@ -89,7 +94,12 @@
 					<label>Password:</label>
 					<input id="password" type="password" name="password" maxlength="55">
 					<input id="submit" type="submit" name="submit" value="Submit"><br>
-					<p><?= $loginresult?> <?=$errorMessage?></p>
+					<p><?= $loginresult?></p>
+                    <div id="error">
+                        <?php foreach ($errors as $errormessage): ?>
+                            <p><?= $errormessage ?></p>
+                        <?php endforeach; ?>
+                    </div>
 				</fieldset>
 			</form>
 		</div>
