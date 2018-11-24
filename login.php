@@ -25,6 +25,10 @@
 	    $notice = "You must be logged in to view that page";
     }
 
+    if (isset($_GET['redirectadmin'])){
+        $notice = "You must be logged in <strong>as Admin</strong> to view that page";
+    }
+
     if (isset($_GET['logout'])){
         session_start();
         $_SESSION['username'] = [];
@@ -122,6 +126,7 @@
 			<a href="login.php">Login</a>
 			<a href="register.php">Register</a>
 			<a href="newpost.php">New Post</a>
+            <a href="admin.php">Admin Only</a>
 		</div>
 	</div>
 </body>

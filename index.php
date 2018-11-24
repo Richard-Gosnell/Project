@@ -37,11 +37,11 @@
                 <input type="text" id="search" name="search" minlength="1">
                 <input type="submit" id="searchquery" name="searchquery" value="Search">
             </form>
+		</div>
+		<div id="menu">
             <form method="get" id="logoutbutton" action="login.php">
                 <input type="submit" id="logout" name="logout" value="Logout">
             </form>
-		</div>
-		<div id="menu">
 			<ul>
 				<li>Home</li>
 				<li><a href="newpost.php">New Post</a></li>
@@ -60,8 +60,7 @@
 			</div>
 			<?php while ($row = $statement -> fetch()): ?>
 			<div class="post">
-				<h2><?=$row['linuxdistrubtionname'];
-				?></h2>
+				<h2><?=$row['linuxdistrubtionname']; ?></h2>
 				<img src="<?=$row['iconorlogolink']?>" alt="Distrubtion Logo">
 
 				<p>Link to site: <a href="<?=$row['websiteurl'];?>"><?=$row['websiteurl'];?></a></p>
@@ -77,6 +76,7 @@
 			<a href="login.php">Login</a>
 			<a href="register.php">Register</a>
 			<a href="newpost.php">New Post</a>
+            <a href="admin.php">Admin Only</a>
 		</div>
 	</div>
 </body>

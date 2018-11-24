@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require 'connect.php';
 
 	$id = $_GET["id"];
@@ -23,7 +23,7 @@
 	<div id="wrapper">
 		<div id="header">
 			<h1><a href="index.php">Site of Linux</a></h1>
-            <form method="get" id="search" action="search.php">
+            <form method="get" id="searchbar" action="search.php">
                 <input type="text" id="search" name="search" minlength="1">
                 <input type="submit" id="searchquery" name="searchquery" value="Search">
             </form>
@@ -42,7 +42,7 @@
 				<h2><?=$row['linuxdistrubtionname'];
 				?></h2>
 				<img src="<?=$row['iconorlogolink']?>" alt="logo">
-				<p><?=html_entity_decode($row['details'])?></p>
+				<?=html_entity_decode($row['details'])?>
 				<p>Link to website: <a href="<?=$row['websiteurl']?>"><?=$row['websiteurl']?></a></p>
 				<h3>System Requirements</h3><br>
 				<p><?=$row['requirements']?></p>
@@ -81,7 +81,7 @@
 						$newcommentstatement->execute();
 
 					} else {
-						echo "Warning: Captcha Invalid, Comment Denied";
+						echo "<p style='color: red'>Warning: Captcha Invalid, Comment Denied</p>";
 					}
 				}
 
@@ -98,7 +98,7 @@
 				<input type="text" name="username" id="username" maxlength="55">
 				<label>Comment:</label>
 				<small>Please keep comments respectful and polite.</small>
-				<textarea id="comment" name="comment" rows="2" maxlength=200"></textarea>
+				<textarea id="comment" name="comment" rows="2" maxlength="200"></textarea>
 				<label>Please enter number in box below:</label>
 				<input type="text" id="captcha" name="captcha">
 				<img src="captcha.php" alt="captcha">
@@ -109,6 +109,7 @@
 				<small>By: <?= $commentrow['username']; ?></small>
 				<br>
 				<p><?= $commentrow['comment']; ?></p>
+                <a>Delete</a>
 			<?php endwhile; ?>
 			</div>
 		</div>
@@ -118,7 +119,8 @@
 			<a href="login.php">Login</a>
 			<a href="register.php">Register</a>
 			<a href="newpost.php">New Post</a>
-		</div>
+                <a href="admin.php">Admin Only</a>
+        </div>
 	</div>
 </body>
 </html>

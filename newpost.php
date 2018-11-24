@@ -47,12 +47,6 @@
 	    return $fileextensionvalid && $mimetypevalid;
     }
 
-    function fileuploadlocation($filename, $uploadsubfolder = 'images'){
-	    $currentfolder = dirname(__FILE__);
-	    $pathsegments = [$currentfolder, $uploadsubfolder, basename($oringalfilename)];
-	    return join(DIRECTORY_SEPARATOR,$pathsegments);
-    }
-
 	$linuxdistrubtionname = isset($_POST['linuxdistrubtionname']);
 	$linuxdistrubtionname = trim($linuxdistrubtionname);
 	$linuxdistrubtionname = filterlinuxdistrubtionname($linuxdistrubtionname);
@@ -88,17 +82,15 @@
 		$iconorlogolink = filtericonorlogolink($iconorlogolink);
 		//$iconorlogolink = FILTER_VALIDATE_URL($iconorlogolink);
 	}
-
-	if (isset($_FILES['image']) && ($_FILES['image']['error'] === 0))
+	if (isset($_FILES['image']) && ($_FILES['image']['error'] == 0))
     {
         $imagefile = filterimage();
         $imagefilename = $_FILES["image"]["name"];
         $temppath = $_FILES["image"]["tempname"];
-        $newpath = fileuploadlocation($imagefilename);
-
-        move_uploaded_file($temppath,$newpath);
-
+        $newpath = "images/".basename($imagefilename);
     }
+
+
 
 
 	$query = "INSERT INTO linuxdistrubtionpost (linuxdistrubtionname, requirements, cpuarchitecture, details, websiteurl, orignatingdistrubtion, iconorlogolink) VALUES (:linuxdistrubtionname, :requirements, :cpuarchitecture, :details, :websiteurl, :orignatingdistrubtion, :iconorlogolink)";
@@ -110,7 +102,9 @@
 		$statment->bindValue(':websiteurl',$websiteurl);
 		$statment->bindValue(':orignatingdistrubtion',$orignatingdistrubtion);
 		$statment->bindValue(':iconorlogolink',$iconorlogolink);
-		//$statment->bindValue(':imagefile', $newpath);
+		//$statment->bindValue(':image', $newpath);
+
+		//move_uploaded_file($_FILES['image']['tempname'],$newpath)
 
 		($statment->execute());
 
@@ -177,6 +171,7 @@
 			<a href="register.php">Register</a>
 			<a href="newpost.php">New Post</a>
 			<a href="contact.php">Contact</a>
+            <a href="admin.php">Admin Only</a>
 		</div>
 	</div>
 </body>

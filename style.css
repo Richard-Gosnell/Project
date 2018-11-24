@@ -25,6 +25,17 @@ fieldset p {
     top: 5px;
 }
 
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+table td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 #wrapper {
     width: auto;
     max-width: 800px;
@@ -34,6 +45,13 @@ fieldset p {
     padding: 20px;
     background: #EEEEEE;
 }
+
+#logout{
+    position: relative;
+    left: 96.8%;
+    top: 37px;
+}
+
 div#header h1 a {
     text-decoration: none;
     color: black;
