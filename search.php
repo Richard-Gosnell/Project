@@ -42,7 +42,8 @@
         <?php while ($row = $statement -> fetch()): ?>
             <div class="post">
                 <ul>
-                    <li><a href="fullpost.php?id=<?=$row['id']?>"><?=$row['linuxdistrubtionname'];?></a><br>
+                    <?php $plink = preg_replace("/[\s]/", "-",$row['linuxdistrubtionname']);?>
+                    <li><a <a href="fullpost.php?id=<?=$row['id']?>&p=<?php echo $plink;?>"><?=$row['linuxdistrubtionname'];?></a><br>
                     <small><a href="edit.php?id=<?=$row['id']?>">Edit</a></small></li>
                 </ul>
             </div>

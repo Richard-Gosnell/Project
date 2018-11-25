@@ -39,8 +39,7 @@
 		<div id="all_posts">
 			<small>Posted by: <?=$row['username']?></small>
 			<div class="fullpost">	
-				<h2><?=$row['linuxdistrubtionname'];
-				?></h2>
+				<h2><?=$row['linuxdistrubtionname']; ?></h2>
 				<img src="<?=$row['iconorlogolink']?>" alt="logo">
 				<?=html_entity_decode($row['details'])?>
 				<p>Link to website: <a href="<?=$row['websiteurl']?>"><?=$row['websiteurl']?></a></p>
@@ -109,9 +108,9 @@
 				<small>By: <?= $commentrow['username']; ?></small>
 				<br>
 				<p><?= $commentrow['comment']; ?></p>
-                <a>Delete</a>
 			<?php endwhile; ?>
 			</div>
+        </div>
 		</div>
 			<div id="footer">
 			<h5>Site Map:</h5>
@@ -121,6 +120,5 @@
 			<a href="newpost.php">New Post</a>
                 <a href="admin.php">Admin Only</a>
         </div>
-	</div>
 </body>
 </html>

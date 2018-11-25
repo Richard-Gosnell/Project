@@ -65,7 +65,8 @@
 
 				<p>Link to site: <a href="<?=$row['websiteurl'];?>"><?=$row['websiteurl'];?></a></p>
 				<p>Details: <?=html_entity_decode($row['details']);?>
-				<a href="fullpost.php?id=<?=$row['id']?>"><br>Read More...</a><br>
+                    <?php $plink = preg_replace("/[\s]/", "-",$row['linuxdistrubtionname']);?>
+				<a href="fullpost.php?id=<?=$row['id']?>&p=<?php echo $plink;?>"><br>Read More...</a><br>
 				<small><a href="edit.php?id=<?=$row['id']?>">Edit</a></small>
 			</div>
 			<?php endwhile; ?>

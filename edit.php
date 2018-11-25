@@ -85,6 +85,8 @@
 		$query = "DELETE FROM linuxdistrubtionpost WHERE id = $id";
 		$statment = $db -> prepare($query);
 		$statment -> execute();
+        header('Location: index.php');
+        exit();
 	} else {
 		$query = "SELECT * FROM linuxdistrubtionpost WHERE id = $id";
 
@@ -99,11 +101,6 @@
 	}
 
     if (isset($_POST['submit'])) {
-        header('Location: index.php');
-        exit();
-    }
-
-    if (isset($_POST['delete'])) {
         header('Location: index.php');
         exit();
     }

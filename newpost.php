@@ -92,10 +92,11 @@
 
 
 
-
-	$query = "INSERT INTO linuxdistrubtionpost (linuxdistrubtionname, requirements, cpuarchitecture, details, websiteurl, orignatingdistrubtion, iconorlogolink) VALUES (:linuxdistrubtionname, :requirements, :cpuarchitecture, :details, :websiteurl, :orignatingdistrubtion, :iconorlogolink)";
+	$username = $_SESSION['username'];
+	$query = "INSERT INTO linuxdistrubtionpost (linuxdistrubtionname, username, requirements, cpuarchitecture, details, websiteurl, orignatingdistrubtion, iconorlogolink) VALUES (:linuxdistrubtionname, :username, :requirements, :cpuarchitecture, :details, :websiteurl, :orignatingdistrubtion, :iconorlogolink)";
 		$statment = $db->prepare($query);
 		$statment->bindValue(':linuxdistrubtionname',$linuxdistrubtionname);
+		$statment->bindValue(':username',$username);
 		$statment->bindValue(':requirements',$requirements);
 		$statment->bindValue(':cpuarchitecture',$cpuarchitecture);
 		$statment->bindValue(':details',$details);
