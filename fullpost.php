@@ -13,7 +13,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Post</title>
 	<link rel="stylesheet" type="text/css" href="style.css">

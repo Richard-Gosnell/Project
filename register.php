@@ -110,8 +110,8 @@
 		<div id="all_posts">
 			<form id="register" action="register.php" method="post">
 				<fieldset>
-                    <p><strong><?= $message ?></strong></p>
 					<legend>Register</legend>
+                    <p><strong><?= $message ?></strong></p>
 					<h5>All fields must be entered.</h5>
 					<label>Username:</label>
 					<input id="username" type="text" name="username">
